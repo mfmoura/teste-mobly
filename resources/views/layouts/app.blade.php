@@ -71,7 +71,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <button class="border rounded" onclick="window.location = '{{ route('carrinho') }}'">
-                            <i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-dark">0</span>
+                            <i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-dark">{{session('countCarrinho')}}</span>
                         </button>
                         <!-- Authentication Links -->
                         @guest

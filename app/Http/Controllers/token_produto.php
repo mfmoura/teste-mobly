@@ -26,7 +26,7 @@ class token_produto_controller extends Controller
 
     public function adicionarProduto(Request $request){
 
-        $this->validarToken(auth()->user()->id);
+        $this->validarToken($request);
 
         $token_produto = new token_produto;
         
@@ -59,6 +59,5 @@ class token_produto_controller extends Controller
         return view('carrinho', ['produtos' => $produtos ?? null, 'total' => $total[0]->preço ?? null]);
 
     }
-
 
 }

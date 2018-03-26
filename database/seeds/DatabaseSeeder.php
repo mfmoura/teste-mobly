@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Mobly\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,22 +13,20 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
-        $Admin = new User;
+        DB::table('users')->insert([
+              ['name'=>'Admin', 'email' => 'admin@admin.com', 'password' => bcrypt("admin123"), 'level' => '1'],
+              ['name'=>'User', 'email' => 'user@user.com', 'password' => bcrypt("user123"), 'level' => '0']
+            ]
+        );
 
-        $Admin->name = "Admin";
-        $Admin->email = "admin@admin.com";
-        $Admin->password = bcrypt("admin123");
-        $Admin->level = '1';
-
-        $Admin->save();
-
-        $User = new User;
-
-        $User->name = "User";
-        $User->email = "user@user.com";
-        $User->password = bcrypt("user123");
-        $User->level = '0';
-
-        $User->save();
+        DB::table('categorias')->insert([
+              ['nome'=>'Categoria 1'],
+              ['nome'=>'Categoria 2'],
+              ['nome'=>'Categoria 3'],
+              ['nome'=>'Categoria 4'],
+              ['nome'=>'Categoria 5'],
+              ['nome'=>'Categoria 6']
+            ]
+        );
     }
 }
