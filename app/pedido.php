@@ -11,5 +11,4 @@ class pedido extends Model
     
     protected $fillable = ['nome'];
     	
-    }
 }

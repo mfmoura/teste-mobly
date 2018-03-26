@@ -85,10 +85,11 @@
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.info') }}">Editar cadastro</a>
+                                    <a class="dropdown-item" href="{{ route('pedido.usuario.exibe') }}">Meus pedidos</a>
                                     @if (isset(Auth::user()->level) && Auth::user()->level == 1)
                                     <a class="dropdown-item" href="{{ route('categoria.list') }}">Categorias</a>
                                     <a class="dropdown-item" href="{{ route('produtos.cadastrar') }}">Cadastrar novo produto</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}">Pedidos</a>
+                                    <a class="dropdown-item" href="{{ route('pedido.admin.exibe') }}">Todos os pedidos</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"></a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"

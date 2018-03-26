@@ -15,8 +15,8 @@ class PedidoProduto extends Migration
     {
         Schema::create('pedido_produto', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('token')->unsigned();
-            $table->foreign('token')->references('id')->on('tokens');
+            $table->integer('pedido')->unsigned();
+            $table->foreign('pedido')->references('id')->on('pedidos');
             $table->integer('produto')->unsigned();
             $table->foreign('produto')->references('id')->on('produtos');
             $table->integer('qtd')->unsigned();

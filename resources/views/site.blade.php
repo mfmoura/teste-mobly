@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style>
+    .card-columns {
+        {{'@'}}include media-breakpoint-only(lg) {
+            column-count: 4;
+        }
+        {{'@'}}include media-breakpoint-only(xl) {
+        column-count: 5;
+        }
+    }
+</style>
 <script>
 
     function comprarModal(id){
@@ -32,6 +41,8 @@
       </div>
       <div class="modal-footer">
         {!! Form::submit('Adicionar', ['class' => 'btn btn-success', 'form' => 'adicionarProduto']); !!}
+        {!! Form::close() !!}
+
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
@@ -40,14 +51,25 @@
 </div>
 
 <div class="container">
-    
-    <div class='row'>
-        <div class="col-sm">
+
+    <div class="row">
+        <div class="input-group col-sm">
+            <div class="input-group-prepend">
+                {!! Form::open(['route' => 'index.index', 'id' => 'busca', 'name' => 'busca']) !!}
+                {!! Form::select('categoria', $categorias, null, ['form' => 'busca', 'class' => 'form-control form-control-lg']) !!}
+            </div>
+                {!! Form::text('search', null, ['placeholder' => 'Buscar', 'form' => 'busca', 'class' => 'form-control form-control-lg']) !!}
+            <div class="input-group-append">
+                {!! Form::submit('Vai!', ['class' => 'btn btn-success', 'form' => 'busca']); !!}
+                </form>
+            </div>
         </div>
     </div>
 
+    <hr>
     <div class="card-columns">
         @foreach ($Produtos as $produto)
+
         <div class="row">
                 <div class="col-sm-3">
                     

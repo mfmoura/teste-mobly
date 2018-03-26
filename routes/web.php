@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'index.index', 'uses' => 'produtos@index']);
+Route::post('/', ['as' => 'index.index', 'uses' => 'produtos@index']);
 
 Auth::routes();
 
@@ -25,8 +26,8 @@ Route::post('/token/adicionarProduto/', ['as' => 'token.adicionarProduto', 'uses
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user/usuarioInfo', ['as' => 'user.info', 'uses' => 'userInfo@recuperaInfo']);
 	Route::get('/carrinho/conferir/', ['as' => 'pedido.conferirDados', 'uses' => 'userInfo@conferir']);
-	Route::get('/carrinho/salvar/', ['as' => 'pedido.salvar', 'uses' => 'pedidosController@salvaPedido']);
-	Route::get('/user/pedidos/', ['uses' => 'pedidosController@exibePedidos']);
+	Route::get('/carrinho/salvar/', ['as' => 'pedido.salvar', 'uses' => 'pedidos@salvaPedido']);
+	Route::get('/user/pedidos/', ["as" => 'pedido.usuario.exibe', 'uses' => 'pedidos@exibePedidos']);
 	Route::post('/user/usuarioInfo/salvar', ['as' => 'user.info.salvar', 'uses' => 'userInfo@salvaInfo']);
 });
 
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth', 'userLevel'], 'prefix' => 'admin'], funct
 	Route::get('/produtos/cadastrar/{id}', ['as' => 'produtos.editar', 'uses' =>'produtos@cadastrar']);
 	Route::get('/produtos/cadastrar/apagarImagem/{id}', ['as' => 'produtos.apagarImagem', 'uses' =>'produtos@apagarImagem']);
 
+	Route::get('/pedidos/', ["as" => 'pedido.admin.exibe', 'uses' => 'pedidos@exibeTodosPedidos']);
 	Route::get('/categorias/', ['as' => 'categoria.list','uses' =>'categorias@list']);
 	Route::get('/categorias/editar', 'categorias@editar');
 	Route::get('/categorias/editar/{id}', 'categorias@editar');

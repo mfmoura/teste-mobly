@@ -16,11 +16,13 @@
 		</div>
 				
 		<ul class="list-group">
-			@foreach
-			<li class="list-group-item">Cras justo odio</li>
+			@forelse  ($pedidos as $pedido)
+			<li class="list-group-item">
+				<b>Pedido: </b> #{{$pedido->chave}} - <b>Usuário: </b> {{$pedido->name}} - <b>Total: </b> R${{$pedido->total_valor}}
+			</li>
 			@empty
 			<li class="list-group-item">Sem pedidos.</li>
-			@endforeach
+			@endforelse
 		<ul>
 	</div>
 
