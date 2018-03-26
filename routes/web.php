@@ -21,6 +21,9 @@ Route::get('/site', 'produtos@index');
 Route::get('/carrinho/', ['as' => 'carrinho', 'uses' => 'token_produto_controller@listCarrinho']);
 Route::post('/token/adicionarProduto/', ['as' => 'token.adicionarProduto', 'uses' => 'token_produto_controller@adicionarProduto']);
 
+Route::get('user/usuarioInfo', ['as' => 'user.info', 'uses' => 'userInfo@recuperaInfo', 'middleware' => 'auth']);
+Route::post('user/usuarioInfo/salvar', ['as' => 'user.info.salvar', 'uses' => 'userInfo@salvaInfo', 'middleware' => 'auth']);
+
 Route::group(['middleware' => ['auth', 'userLevel'], 'prefix' => 'admin'], function () {
 
 

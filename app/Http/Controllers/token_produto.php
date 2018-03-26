@@ -26,7 +26,7 @@ class token_produto_controller extends Controller
 
     public function adicionarProduto(Request $request){
 
-        $this->validarToken($request);
+        $this->validarToken(auth()->user()->id);
 
         $token_produto = new token_produto;
         

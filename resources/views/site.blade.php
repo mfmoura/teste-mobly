@@ -25,7 +25,6 @@
       </div>
       <div class="modal-body">
         <img src="{{ asset('img/spinner.gif')}}" class="text-center" id="spinner_modal" style="display: none">
-    {!! Form::hidden('id', $value = null) !!}
         <p>Deseja adicionar o item ao carrinho?</p>
         {!! Form::open(['route' => 'token.adicionarProduto', 'id' => 'adicionarProduto']) !!}
         {!! Form::hidden('id', null, ['id' => 'id']) !!}

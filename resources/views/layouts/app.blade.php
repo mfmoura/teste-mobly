@@ -30,7 +30,23 @@
     <script>
         $(document).ready(function($){
             
-             $('.money').mask('000000,00', {reverse: true, placeholder: '0,00'});
+            $('.money').mask('000000,00', {reverse: true, placeholder: '0,00'});
+            $('.cep').mask('00000-000');
+            $('.cpf').mask('000.000.000-00', {reverse: true});
+            $('.rg').mask("00.000.000-A")
+            
+
+
+            var PhoneMaskBehavior = function (val) {
+              return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            options = {
+              onKeyPress: function(val, e, field, options) {
+                  field.mask(PhoneMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+            $('.phone').mask(PhoneMaskBehavior, options);
 
         });
     </script>
@@ -68,6 +84,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.info') }}">Editar cadastro</a>
                                     @if (isset(Auth::user()->level) && Auth::user()->level == 1)
                                     <a class="dropdown-item" href="{{ route('categoria.list') }}">Categorias</a>
                                     <a class="dropdown-item" href="{{ route('produtos.cadastrar') }}">Cadastrar novo produto</a>
