@@ -23,8 +23,11 @@ Route::post('/token/adicionarProduto/', ['as' => 'token.adicionarProduto', 'uses
 
 // Aplicativos que precisam de login
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('user/usuarioInfo', ['as' => 'user.info', 'uses' => 'userInfo@recuperaInfo']);
-	Route::post('user/usuarioInfo/salvar', ['as' => 'user.info.salvar', 'uses' => 'userInfo@salvaInfo']);
+	Route::get('/user/usuarioInfo', ['as' => 'user.info', 'uses' => 'userInfo@recuperaInfo']);
+	Route::get('/carrinho/conferir/', ['as' => 'pedido.conferirDados', 'uses' => 'userInfo@conferir']);
+	Route::get('/carrinho/salvar/', ['as' => 'pedido.salvar', 'uses' => 'pedidosController@salvaPedido']);
+	Route::get('/user/pedidos/', ['uses' => 'pedidosController@exibePedidos']);
+	Route::post('/user/usuarioInfo/salvar', ['as' => 'user.info.salvar', 'uses' => 'userInfo@salvaInfo']);
 });
 
 // Aplicativos admin

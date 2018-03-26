@@ -43,7 +43,7 @@
 		<div class="col-md">
 			<div class="btn-group" role="group" aria-label="Basic example">
 			  @if ($produtos->count() > 0)
-			  <button type="button" class="btn btn-success">Finalizar compras</button>
+			  <button type="button" class="btn btn-success" onclick="window.location = '{{ route('pedido.conferirDados')}}'">Finalizar compras</button>
 			  @endif
 			  <button type="button" class="btn btn-primary" onclick="window.location = '{{ route('index.index') }}'">Voltar ao site</button>
 			</div>			

@@ -5,7 +5,7 @@ namespace Mobly\Http\Controllers;
 use Illuminate\Http\Request;
 use Mobly\usuarioInfo;
 use Mobly\user;
-
+use Mobly\token_produto;
 
 class userInfo extends Controller
 {
@@ -48,6 +48,14 @@ class userInfo extends Controller
     	$usuarioInfo = usuarioInfo::where('user', auth()->user()->id)->first();
 
     	return view('dadosPessoais', ['usuarioInfo' => $usuarioInfo, 'user' => $user] );
+    }
+
+    public function conferir(){
+
+        $user = user::findOrFail(auth()->user()->id);
+        $usuarioInfo = usuarioInfo::where('user', auth()->user()->id)->first();
+
+        return view('conferirDados', ['usuarioInfo' => $usuarioInfo, 'user' => $user] );    
 
     }
 }
