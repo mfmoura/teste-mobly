@@ -57,7 +57,13 @@
                         <h5 class="card-title">{{{ $produto->nome }}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">R$ ({{{ number_format($produto->preço, 2, ",", ".") }}})</h6>
                         <p class="card-text"><img align="left" class="img-thumbnail rounded" style="margin: 5px; max-width: 64px; max-height: 64px;" src="{{ (empty($produto->imagem))? asset('img/photo.jpg') : url('storage/img/produtos/' . $produto->imagem) }}">{{{ substr($produto->descricao, 0, 250) }}} {{strlen($produto->descricao) > 250 ? "..." : ""}}</p>
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal" onclick="comprarModal({{$produto->id}})">Comprar</button>
+                        <div class="btn-group float-right" role="group">
+                            @if(isset(Auth::user()->level) && Auth::user()->level == 1)
+                            <button class="btn btn-dark" onclick="window.location = '{{ route('produtos.cadastrar') ."/". $produto->id }}'">Editar produto</button>
+                            @endif
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="comprarModal({{$produto->id}})">Comprar</button>
+                        </div>
+
                         <br>
                       </div>
                     </div>

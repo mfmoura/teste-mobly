@@ -19,7 +19,7 @@
 	    <div class="row">
             <div class="col-sm-6">
 									            
-				{!! Form::model($produto, ['url' => '/produtos/cadastrar/salvar', 'enctype' => 'multipart/form-data', 'files' => true]) !!}
+				{!! Form::model($produto, ['url' => '/admin/produtos/cadastrar/salvar', 'enctype' => 'multipart/form-data', 'files' => true]) !!}
 				
 				{!! Form::hidden('id', $value = null) !!}
 
@@ -51,7 +51,7 @@
 				@if ($produto->imagem !== NULL)
 				<div class="form-group">
 					<p>Imagem cadastrada:</p>
-					<button type="button" class="btn btn-danger" onclick="window.location = '/produtos/cadastrar/apagarImagem/{{ $produto->id }}';">Apagar</button>
+					<button type="button" class="btn btn-danger" onclick="window.location = '/admin/produtos/cadastrar/apagarImagem/{{ $produto->id }}';">Apagar</button>
 					<img src="{{ url('storage/img/produtos/' . $produto->imagem) }}" class="img-thumbnail">
 
 

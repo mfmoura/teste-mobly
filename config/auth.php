@@ -73,10 +73,6 @@ return [
             'driver' => 'eloquent',
             'model' => Mobly\User::class,
         ],
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => Mobly\Admin::class,
-        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

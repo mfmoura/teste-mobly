@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -50,6 +54,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <button class="border rounded" onclick="window.location = '{{ route('carrinho') }}'">
+                            <i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-dark">0</span>
+                        </button>
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -61,6 +68,12 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if (isset(Auth::user()->level) && Auth::user()->level == 1)
+                                    <a class="dropdown-item" href="{{ route('categoria.list') }}">Categorias</a>
+                                    <a class="dropdown-item" href="{{ route('produtos.cadastrar') }}">Cadastrar novo produto</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}">Pedidos</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"></a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

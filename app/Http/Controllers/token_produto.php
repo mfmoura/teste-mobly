@@ -45,12 +45,20 @@ class token_produto_controller extends Controller
 
         $produtos = DB::table('token_produto')
             ->join('produtos', "produtos.id", "=", "token_produto.produto")
-            ->select(DB::raw('SUM(qtd) as qtd, produtos.id, produtos.nome, produtos.descricao, produtos.preço, produtos.imagem'))
+            ->select(DB::raw('SUM(qtd) as qtd, produtos.id, produtos.nome, produtos.descricao, produtos.preço * SUM(qtd) as preço, produtos.imagem'))
             ->where('token', $request->session()->get('token'))
             ->groupBy('produtos.id')
             ->simplePaginate($paginacao);
 
-        return view('carrinho', ['produtos' => $produtos ?? null]);
+        $total = DB::table('token_produto')
+            ->join('produtos', "produtos.id", "=", "token_produto.produto")
+            ->select(DB::raw('produtos.preço * SUM(qtd) as preço'))
+            ->where('token', $request->session()->get('token'))
+            ->groupBy('token_produto.token')->get()->toArray();
+
+        return view('carrinho', ['produtos' => $produtos ?? null, 'total' => $total[0]->preço ?? null]);
 
     }
+
+
 }

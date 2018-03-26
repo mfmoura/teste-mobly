@@ -18,7 +18,7 @@ class ProdutoCategoria extends Migration
             $table->foreign('categoria')->references('id')->on('categorias');
             $table->integer('produto')->unsigned();
             $table->foreign('produto')->references('id')->on('produtos');
-            $table->unique('categoria', 'produto');
+            $table->unique(['categoria', 'produto']);
         });
     }
 

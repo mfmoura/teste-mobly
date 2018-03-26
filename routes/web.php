@@ -18,10 +18,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/site', 'produtos@index');
 
-Route::get('/carrinho/', 'token_produto_controller@listCarrinho');
+Route::get('/carrinho/', ['as' => 'carrinho', 'uses' => 'token_produto_controller@listCarrinho']);
+Route::post('/token/adicionarProduto/', ['as' => 'token.adicionarProduto', 'uses' => 'token_produto_controller@adicionarProduto']);
 
-Route::group(['middleware' => 'auth:admin'], function () {
-	Route::post('/token/adicionarProduto/', ['as' => 'token.adicionarProduto', 'uses' => 'token_produto_controller@adicionarProduto']);
+Route::group(['middleware' => ['auth', 'userLevel'], 'prefix' => 'admin'], function () {
+
 
 	Route::get('/produtos/cadastrar', ['as' => 'produtos.cadastrar', 'uses' =>'produtos@cadastrar']);
 	Route::get('/produtos/cadastrar/{id}', ['as' => 'produtos.editar', 'uses' =>'produtos@cadastrar']);

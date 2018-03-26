@@ -5,7 +5,7 @@
 	function editaCategoria(id = ''){
 
 		$.ajax({
-			url: "/categorias/editar/" + id,
+			url: "/admin/categorias/editar/" + id,
 		 	context: document.body,
 		 	beforeSend: function(){
 		 			if (id == '') {
@@ -31,7 +31,7 @@
 	}
 
 	function redirDel(id){
-		window.location = "/categorias/apagar/" + id;
+		window.location = "/admin/categorias/apagar/" + id;
 	}
 
 	function deletaCategoria(id){

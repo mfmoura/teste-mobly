@@ -1,4 +1,4 @@
-	{!! Form::model($categoria, ['url' => '/categorias/salvar/', 'enctype' => 'multipart/form-data', 'id' => 'categorias-form']) !!}
+	{!! Form::model($categoria, ['url' => '/admin/categorias/salvar/', 'enctype' => 'multipart/form-data', 'id' => 'categorias-form']) !!}
 	
 	{!! Form::hidden('id', $value = null) !!}
 	
